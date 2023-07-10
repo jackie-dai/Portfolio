@@ -1,0 +1,28 @@
+html {
+    font-family: 'Inter', sans-serif;
+}
+body {
+    background-color: lightblue;
+}
+
+
+canvas {
+    display: flexbox;
+    justify-content: center;
+    align-items: center;;
+    margin: auto;
+
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rightNav li {
+    margin-right: 25px;
+}
+
+
