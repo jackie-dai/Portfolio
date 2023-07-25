@@ -9,6 +9,12 @@ const renderer = new THREE.WebGLRenderer();
 const canvas = document.getElementById("canvas");
 let movement = .01;
 
+let keyMap = new Map();
+let keys = [87, 68, 83, 65];
+for (let num of keys) {
+    keyMap.set(num, false);
+}
+
 renderer.setSize(width, height);
 canvas.appendChild(renderer.domElement);
 
@@ -26,7 +32,18 @@ scene.background = new THREE.Color(0xFFFFFF);
 
 function animate() {
     requestAnimationFrame(animate);
-    strafe(cube);
+
+    if (keyMap[65]) {
+        console.log("move forwad");
+        cube.position.x -= 0.1;
+    } else if(keyMap[68]) {
+        cube.position.x += 0.1;
+    } else if (keyMap[87]) {
+        cube.position.z -= 0.1;
+    } else if (keyMap[83]) {
+        cube.position.z += 0.1;
+    }
+
     renderer.render(scene, camera);
 }
 
@@ -48,3 +65,11 @@ function generateCube(width, height, depth, color) {
 }
 
 animate();
+
+$(document).on("keydown", function(e) {
+    keyMap[e.keyCode] = true;
+});
+
+$(document).on("keyup", function(e) {
+    keyMap[e.keyCode] = false;
+});
